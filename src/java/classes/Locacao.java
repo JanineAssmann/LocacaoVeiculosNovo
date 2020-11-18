@@ -147,6 +147,7 @@ public class Locacao {
         Connection con = Conexao.getInstance();
         String sql = "select * from locacao loc, carro car where "
                 + "loc.idcarro = car.id and car.placa = ?";
+
         List<Locacao> listaLocacao = new ArrayList<>();
         try {
             PreparedStatement stm = con.prepareStatement(sql);
@@ -154,6 +155,7 @@ public class Locacao {
             while (rs.next()) {
                     Locacao locacao = new Locacao();
                     locacao.setId(rs.getInt("Id"));
+                    Carro car = Carro.consultar(rs.getInt("idcarro"));
                     locacao.setCarro(car);
                     locacao.setCliente(Cliente.consultar(rs.getInt("idcliente")));
                     locacao.setData(rs.getObject("data", LocalDate.class));
