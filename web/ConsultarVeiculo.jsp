@@ -20,6 +20,31 @@
         <%
             List <Carro> carros = Carro.consultar();
         %>
-        
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Placa</th>
+                <th>Km</th>
+                <th>Ar Condicionado</th>
+                <th>Direção Hidráulica</th>
+                <th>Câmbio Automático</th>
+                <%--criar os botões para as opções de excluir e editar--%>
+                
+            </thead>
+            <tbody>
+                <% for (Carro c: carros) { %>
+                <tr>
+                    <td><% out.write(c.getId()); %></td>
+                    <td><% out.write(c.getMarca()); %></td>
+                    <td><% out.write(c.getModelo()); %></td>
+                    <td><% out.write(c.getPlaca()); %></td>
+                    <td><% out.write(c.getKm()); %></td>
+                    
+                    <% out.write(c.getId()); %>
+                <% } %>
+            </tbody>
+        </table>
     </body>
 </html>
