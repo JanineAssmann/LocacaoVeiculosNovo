@@ -1,5 +1,5 @@
 <%-- 
-    Document   : ConsultarVeiculo
+    Document   : consultar-veiculo
     Created on : 16 de nov de 2020, 08:56:11
     Author     : Janine
 --%>
@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>LOCAÇÃO DE VEÍCULOS INDAIAL</title>
+        <link rel="shortcut icon" href="car3.ico" type="image/x-icon"> <!-- Inserção do ícone na barra de título do navegador -->
     </head>
     <body>
         <h1>Locação de Veículos</h1>
@@ -36,18 +37,18 @@
             </thead> <!-- Indicação de final do cabeçalho da tabela -->
             <tbody> <!-- Indicação de início do corpo da tabela -->
                 <% for (Carro c: carros) { %>
-                <tr>
+                <tr> <!-- Indicação do início dos itens que formarão as linhas da tabela -->
                     <td><% out.write(String.valueOf(c.getId())); %></td>
                     <td><% out.write(c.getMarca()); %></td>
                     <td><% out.write(c.getModelo()); %></td>
                     <td><% out.write(c.getPlaca()); %></td>
                     <td><% out.write(String.valueOf(c.getKm())); %></td>
                     <%
-                    out.write("<td>" + (c.isArcond() ? "Sim" : "Não") + "</td>");
-                    out.write("<td>" + (c.isDirhidraulica() ? "Sim" : "Não") + "</td>");
-                    out.write("<td>" + (c.isCambioautom() ? "Sim" : "Não") + "</td>");
+                    out.write("<td>" + (c.isArcond() ? "Sim" : "Não") + "</td>"); /* operador ternário para marcação do checkbox */
+                    out.write("<td>" + (c.isDirhidraulica() ? "Sim" : "Não") + "</td>"); /* operador ternário para marcação do checkbox */
+                    out.write("<td>" + (c.isCambioautom() ? "Sim" : "Não") + "</td>"); /* operador ternário para marcação do checkbox */
                     %>
-                </tr>
+                </tr> <!-- Indicação do início dos itens que formarão as linhas da tabela -->
                     <% } %>
             </tbody> <!-- Indicação de final do corpo da tabela -->
         </table> <!-- Indicação do final da tabela -->

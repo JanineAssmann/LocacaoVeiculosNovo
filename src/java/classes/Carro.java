@@ -1,5 +1,4 @@
 
-
 package classes;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class Carro {
                 + "\n";
     }
 
-    public boolean salvar(){
+    public void salvar() throws Exception{
         String sql = "insert into carro (placa, marca, modelo, km, arcond,";
                sql += "dirhidraulica, cambioautom) ";
                sql += "values(?, ?, ?, ?, ?, ?, ?)";
@@ -52,10 +51,9 @@ public class Carro {
             stm.setBoolean(7, this.cambioautom);
             stm.execute();
         } catch (SQLException ex) {
-            System.out.println("Erro: " + ex.getMessage());
-            return false;
+            throw new Exception(ex.getMessage());
+            //System.out.println("Erro: " + ex.getMessage());
         }
-        return true;
     }
     
     public boolean alterar(){

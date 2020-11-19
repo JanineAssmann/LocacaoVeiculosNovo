@@ -1,5 +1,5 @@
 <%-- 
-    Document   : CadastrarVeiculo
+    Document   : cadastrar-veiculo
     Created on : 16 de nov de 2020, 09:31:03
     Author     : Janine
 --%>
@@ -10,12 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>LOCAÇÃO DE VEÍCULOS INDAIAL</title>
+        <link rel="shortcut icon" href="car3.ico" type="image/x-icon"> <!-- Inserção do ícone na barra de título do navegador -->
     </head>
     <body>
         <h1>Locação de Veículos</h1>
         <h2>Cadastro de Veículos</h2>
         <hr/>
-        <form action="ReceberDadosVeiculos.jsp" method="POST">
+        <form action="receber-dados-veiculos.jsp" method="POST">
             <label>Informe a Marca</label>
             <input type="text" name="marca"/>
             
@@ -40,11 +41,11 @@
             <label>Direção Hidráulica</label>
             
             <br/>
-            <input type="checkbox" name="caombioautom"/>
+            <input type="checkbox" name="cambioautom"/>
             <label>Câmbio Automático</label>
             
             <hr/>
-            <input type="submit" name="Salvar Dados"/>
+            <input type="submit" value="Salvar Dados"/>
             <br/>
                         
         </form>
