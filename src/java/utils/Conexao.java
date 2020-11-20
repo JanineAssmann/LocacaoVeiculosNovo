@@ -12,7 +12,7 @@ public class Conexao {
     /*
     public static Connection conectar() {
         Connection con = null;
-        String url = "jdbc:postgresql://localhost:5432/locacar";
+        String url = "jdbc:postgresql://localhost:5432/locacaoveiculos";
         String user = "postgres";
         String password = "123";
        try {
