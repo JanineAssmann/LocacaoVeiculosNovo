@@ -17,19 +17,19 @@
         <h2>Cadastro de Veículos</h2>
         <hr/>
         <form action="receber-dados-veiculos.jsp" method="POST">
-            <label>Informe a Marca</label>
+            <label>Marca</label>
             <input type="text" name="marca"/>
             
             <br/>
-            <label>Informe o Modelo</label>
+            <label>Modelo</label>
             <input type="text" name="modelo"/>
             
             <br/>
-            <label>Informe a Placa</label>
+            <label>Placa</label>
             <input type="text" name="placa"/>
             
             <br/>
-            <label>Informe a Quilometragem</label>
+            <label>Quilometragem</label>
             <input type="text" name="km"/>
             
             <br/>

@@ -63,7 +63,6 @@ public class Locacao {
             System.out.println("Erro: " + ex.getMessage());
             return false;
         }
-        
         return true;
     }
     
@@ -89,7 +88,6 @@ public class Locacao {
             System.out.println("Erro: " + ex.getMessage());
             return false;
         }
-
         return true;
     }
     

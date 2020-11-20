@@ -220,7 +220,7 @@ public class Carro {
         this.km = km;
     }
 
-    public boolean isArcond() { // alterar de isArcond para getArcond?
+    public boolean isArcond() { 
         return arcond;
     }
 
@@ -228,7 +228,7 @@ public class Carro {
         this.arcond = arcond;
     }
 
-    public boolean isDirhidraulica() { // alterar de isDirhidraulica para getDirhidraulica?
+    public boolean isDirhidraulica() { 
         return dirhidraulica;
     }
 
@@ -236,7 +236,7 @@ public class Carro {
         this.dirhidraulica = dirhidraulica;
     }
 
-    public boolean isCambioautom() { // alterar de isCambioautom para getCambioautom?
+    public boolean isCambioautom() { 
         return cambioautom;
     }
 
