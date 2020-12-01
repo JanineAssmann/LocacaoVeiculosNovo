@@ -16,38 +16,39 @@
         <h1>Locação de Veículos</h1>
         <h2>Cadastro de Veículos</h2>
         <hr/>
-        <form action="receber-dados-veiculos.jsp" method="POST">
+        <form action="recebe-cadastrar-veiculos.jsp" method="POST">
             <label>Marca</label>
             <input type="text" name="marca"/>
-            
+            <br/> <!-- acertar por CSS -->
             <br/>
             <label>Modelo</label>
             <input type="text" name="modelo"/>
-            
+            <br/> <!-- acertar por CSS -->
             <br/>
             <label>Placa</label>
             <input type="text" name="placa"/>
-            
+            <br/> <!-- acertar por CSS -->
             <br/>
-            <label>Quilometragem</label>
+            <label>Km: </label>
             <input type="text" name="km"/>
-            
+            <br/> <!-- acertar por CSS -->
             <br/>
             <input type="checkbox" name="arcond"/>
             <label>Ar Condicionado</label>
-            
+            <br/> <!-- acertar por CSS -->
             <br/>
             <input type="checkbox" name="dirhidraulica"/>
             <label>Direção Hidráulica</label>
-            
+            <br/> <!-- acertar por CSS -->
             <br/>
             <input type="checkbox" name="cambioautom"/>
             <label>Câmbio Automático</label>
-            
+
             <hr/>
             <input type="submit" value="Salvar Dados"/>
-            <br/>
-                        
+            <hr/>
+            <input type="button" value="Retornar para Página Principal" onclick="location.href='index.html'"/>
+
         </form>
     </body>
 </html>

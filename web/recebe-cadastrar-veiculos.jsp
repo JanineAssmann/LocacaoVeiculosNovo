@@ -1,5 +1,5 @@
 <%-- 
-    Document   : receber-dados-veiculos
+    Document   : recebe-cadastrar-veiculos
     Created on : 19 de nov de 2020, 16:16:16
     Author     : Janine
 --%>
@@ -15,7 +15,10 @@
         <link rel="shortcut icon" href="car3.ico" type="image/x-icon"> <!-- Inserção do ícone na barra de título do navegador -->
     </head>
     <body>
-        <h1>Locação de Veículos Indaial</h1>
+
+        <h1>Locação de Veículos</h1>
+        <h2>Cadastro de Veículos</h2>
+
         <%
             String marca = request.getParameter("marca");
             String modelo = request.getParameter("modelo");
@@ -26,9 +29,9 @@
             Boolean cambioautom = Web.valorCheckbox(request.getParameter("cambioautom"));
             
             Carro carro = new Carro();
-            carro.setMarca(marca);
-            carro.setModelo(modelo);
-            carro.setPlaca(placa);
+            carro.setMarca(marca.toUpperCase());
+            carro.setModelo(modelo.toUpperCase());
+            carro.setPlaca(placa.toUpperCase());
             carro.setKm(km);
             carro.setArcond(arcond);
             carro.setDirhidraulica(dirhidraulica);
@@ -36,7 +39,9 @@
             
             try {
                 carro.salvar();
-                out.write("Dados Cadastrados com Sucesso");
+                out.write("Dados Cadastrados com Sucesso<br/>"  +
+                        "<button onclick='history.go(-1)'>Retornar para Página Anterior</button><br/>" + 
+                        "<button onclick='history.go(-2)'>Retornar para Página Principal</button>");
             } catch (Exception ex) {
                 out.write("Erro: " + ex.getMessage());
             }

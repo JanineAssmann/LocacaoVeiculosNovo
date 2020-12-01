@@ -113,7 +113,7 @@ public class Locacao {
         String sql = "select loc.* from locacao loc, carro car where "
                    + "loc.idcarro = car.id and car.placa = ?";
         Locacao locacao = null;
-        Carro car = Carro.consultar(Placa);
+        Carro car = Carro.consultarPlaca(Placa);
         if (car != null) {
             try {
                 PreparedStatement stm = con.prepareStatement(sql);

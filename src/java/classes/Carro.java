@@ -128,7 +128,7 @@ public class Carro {
         return carro;
     }
 
-    public static Carro consultar(String placa){
+    public static Carro consultarPlaca(String placa){
         //Connection con = Conexao.conectar();
         Connection con = Conexao.getInstance();
         String sql = "select * from carro where placa = ?";
@@ -152,6 +152,60 @@ public class Carro {
             System.out.println("Erro: " + ex.getMessage());
         }
         return carro;
+    }
+
+    public static List<Carro> consultarMarca(String marca){
+        //Connection con = Conexao.conectar();
+        Connection con = Conexao.getInstance();
+        String sql = "select * from carro where marca = ?";
+        List<Carro> listaCarro = new ArrayList<>();
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, marca);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+               Carro carro = new Carro();
+               carro.setId(rs.getInt("id"));
+               carro.setMarca(rs.getString("Marca"));
+               carro.setModelo(rs.getString("Modelo"));
+               carro.setPlaca(rs.getString("Placa"));
+               carro.setKm(rs.getInt("km"));
+               carro.setArcond(rs.getBoolean("ArCond"));
+               carro.setDirhidraulica(rs.getBoolean("DirHidraulica"));
+               carro.setCambioautom(rs.getBoolean("CambioAutom"));
+               listaCarro.add(carro);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        return listaCarro;
+    }
+
+    public static List<Carro> consultarModelo(String modelo){
+        //Connection con = Conexao.conectar();
+        Connection con = Conexao.getInstance();
+        String sql = "select * from carro where modelo = ?";
+        List<Carro> listaCarro = new ArrayList<>();
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, modelo);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+               Carro carro = new Carro();
+               carro.setId(rs.getInt("id"));
+               carro.setMarca(rs.getString("Marca"));
+               carro.setModelo(rs.getString("Modelo"));
+               carro.setPlaca(rs.getString("Placa"));
+               carro.setKm(rs.getInt("km"));
+               carro.setArcond(rs.getBoolean("ArCond"));
+               carro.setDirhidraulica(rs.getBoolean("DirHidraulica"));
+               carro.setCambioautom(rs.getBoolean("CambioAutom"));
+               listaCarro.add(carro);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        return listaCarro;
     }
 
     public static List<Carro> consultar(){
