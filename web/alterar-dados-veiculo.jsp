@@ -49,10 +49,11 @@
             <input type="checkbox" name="cambioautom" <%out.write(c.isCambioautom()?"checked='checked'":"");%>/>
             <label>Câmbio Automático</label>
             <hr/>
-            <input type="submit" value="Salvar Alteração dos Dados"/>
+            <input type="submit" value="Confirmar Alteração dos Dados"/>
             <br/><br/>
         </form>
-            <button onclick="location.href='consultar-veiculo.jsp'">Retornar para Página Principal</button>
+            <button onclick="location.href='consultar-veiculo.jsp'">Retornar para Página Anterior</button><br/><br/>
+            <button onclick="location.href='index.html'">Retornar para Página Principal</button>
             
     </body>
 </html>

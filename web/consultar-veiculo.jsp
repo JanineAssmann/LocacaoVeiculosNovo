@@ -17,7 +17,8 @@
     </head>
     <body>
         <h1>Locação de Veículos</h1>
-        <h2>Consulta de Veículos Cadastrados</h2>
+        <h2>Cadastro de Veículos</h2>
+        <h3>Consulta de Veículos Cadastrados</h3>
         <hr/>
         <%
             String tipo = request.getParameter("tipo");
@@ -48,9 +49,9 @@
                 }
             }
         %>
-        
+
         <form method="POST">
-            <label>Pesquisar:</label>
+            <label>Pesquisar: </label>
             <select name="tipo">
                 <option value="" <% out.write("".equals(tipo) || tipo == null ? " selected='selected'" : "");%> > </option> <!-- retorna a lista completa dos carros cadastrados -->
                 <option value="id" <% out.write("id".equals(tipo) ? " selected='selected'" : "");%> >Código</option> <!-- fixa a opção de consulta no código após busca -->
@@ -58,12 +59,14 @@
                 <option value="modelo" <% out.write("modelo".equals(tipo) ? " selected='selected'" : "");%> >Modelo</option>
                 <option value="placa" <% out.write("placa".equals(tipo) ? " selected='selected'" : "");%> >Placa</option>
             </select>
-                <input type="text" name="txtPesquisa" value="<%out.write(txtPesquisa);%>"/>
+            <input type="text" name="txtPesquisa" value="<%out.write(txtPesquisa);%>"/>
             <button type="submit">Buscar</button>
+        <hr/>
+
         </form>
             <table> <!-- Indicação do início da tabela -->
                 <thead> <!-- Indicação de início do cabeçalho da tabela -->
-                    <th>Id</th> <!-- Item do cabeçalho da tabela -->
+                    <th>Código</th> <!-- Item do cabeçalho da tabela -->
                     <th>Marca</th> <!-- Item do cabeçalho da tabela -->
                     <th>Modelo</th> <!-- Item do cabeçalho da tabela -->
                     <th>Placa</th> <!-- Item do cabeçalho da tabela -->
@@ -91,7 +94,7 @@
                         out.write("<td>" + (car.isCambioautom() ? "Sim" : "Não") + "</td>"); /* operador ternário para marcação do checkbox */
                         %>
                         
-                    <td><%out.write("<a href=alterar-dados-veiculo.jsp?idcarro="+String.valueOf(car.getId())+">Editar</a>");%></td>
+                    <td><%out.write("<a href=alterar-dados-veiculo.jsp?idcarro="+String.valueOf(car.getId())+">Alterar</a>");%></td>
                     <td><%out.write("<a href=excluir-cadastro-veiculo.jsp?idcarro="+String.valueOf(car.getId())+">Excluir</a>");%></td>
                     </tr> <!-- Indicação do fim dos itens que formarão as linhas da tabela -->
                         <% } %>

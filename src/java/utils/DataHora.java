@@ -31,7 +31,7 @@ public class DataHora {
     }
     /*
     public static LocalDateTime dataPrazo() {
-        LocalDateTime ldtPrazo = LocalDate.now().p
+        LocalDateTime ldtPrazo = LocalDate.now().p;
     }
     */
     public static LocalDateTime dataHora() {

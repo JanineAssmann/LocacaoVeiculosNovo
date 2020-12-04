@@ -15,10 +15,6 @@ public class Cliente {
     private String cpf;
     private String nome;
     private String numcartao;
-    private int numcheque;
-    private String nomebanco;
-    private int agbanco;
-    private String ctabanco;
     private String email;
     private String telefone;
 
@@ -29,19 +25,15 @@ public class Cliente {
                 + "\nNome: " + nome 
                 + "\nCPF: " + cpf 
                 + "\nNº Cartão: " + numcartao 
-                + "\nBanco: " + nomebanco 
-                + "\nAgência: " + agbanco 
-                + "\nNº Conta: " + ctabanco 
-                + "\nNº Cheque: " + numcheque 
                 + "\nE-Mail: " + email 
                 + "\nTelefone: " + telefone
                 + "\n";
     }
 
     public boolean salvar() {
-        String sql = "insert into cliente (nome, cpf, numcartao, nomebanco, ";
-              sql += "agbanco, ctabanco, numcheque, email, telefone) values ";
-              sql += "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into cliente (nome, cpf, numcartao, ";
+              sql += "email, telefone) values ";
+              sql += "(?, ?, ?, ?, ?)";
         //Connection con = Conexao.conectar();
         Connection con = Conexao.getInstance();
         try {
@@ -49,12 +41,8 @@ public class Cliente {
             stm.setString(1, this.nome);
             stm.setString(2, this.cpf);
             stm.setString(3, this.numcartao);
-            stm.setString(4, this.nomebanco);
-            stm.setInt(5, this.agbanco);
-            stm.setString(6, this.ctabanco);
-            stm.setInt(7, this.numcheque);
-            stm.setString(8, this.email);
-            stm.setString(9, this.telefone);
+            stm.setString(4, this.email);
+            stm.setString(5, this.telefone);
             stm.execute();
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex.getMessage());
@@ -67,20 +55,15 @@ public class Cliente {
         //Connection con = Conexao.conectar();
         Connection con = Conexao.getInstance();
         String sql = "update cliente set nome = ?, cpf = ?, numcartao = ?, ";
-              sql += "nomebanco = ?, agbanco = ?, ctabanco = ?, numcheque = ?, ";
               sql += "email = ?, telefone = ? where id = ?";
         try {
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setString(1, this.nome);
             stm.setString(2, this.cpf);
             stm.setString(3, this.numcartao);
-            stm.setString(4, this.nomebanco);
-            stm.setInt(5, this.agbanco);
-            stm.setString(6, this.ctabanco);
-            stm.setInt(7, this.numcheque);
-            stm.setString(8, this.email);
-            stm.setString(9, this.telefone);
-            stm.setInt(10, this.id);
+            stm.setString(4, this.email);
+            stm.setString(5, this.telefone);
+            stm.setInt(6, this.id);
             stm.execute();
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex.getMessage());
@@ -119,10 +102,6 @@ public class Cliente {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setCpf(rs.getString("CPF"));
                 cliente.setNumcartao(rs.getString("NumCartao"));
-                cliente.setNomebanco(rs.getString("NomeBanco"));
-                cliente.setAgbanco(rs.getInt("AgBanco"));
-                cliente.setCtabanco(rs.getString("CtaBanco"));
-                cliente.setNumcheque(rs.getInt("NumCheque"));
                 cliente.setEmail(rs.getString("Email"));
                 cliente.setTelefone(rs.getString("Telefone"));
             }
@@ -147,10 +126,6 @@ public class Cliente {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setCpf(rs.getString("CPF"));
                 cliente.setNumcartao(rs.getString("NumCartao"));
-                cliente.setNomebanco(rs.getString("NomeBanco"));
-                cliente.setAgbanco(rs.getInt("AgBanco"));
-                cliente.setCtabanco(rs.getString("CtaBanco"));
-                cliente.setNumcheque(rs.getInt("NumCheque"));
                 cliente.setEmail(rs.getString("Email"));
                 cliente.setTelefone(rs.getString("Telefone"));
             }
@@ -174,10 +149,6 @@ public class Cliente {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setCpf(rs.getString("CPF"));
                 cliente.setNumcartao(rs.getString("NumCartao"));
-                cliente.setNomebanco(rs.getString("NomeBanco"));
-                cliente.setAgbanco(rs.getInt("AgBanco"));
-                cliente.setCtabanco(rs.getString("CtaBanco"));
-                cliente.setNumcheque(rs.getInt("NumCheque"));
                 cliente.setEmail(rs.getString("Email"));
                 cliente.setTelefone(rs.getString("Telefone"));
                 listaCliente.add(cliente);
@@ -187,7 +158,57 @@ public class Cliente {
         }
         return listaCliente;
     }
-    
+
+    public static List<Cliente> consultarCpf(String cpf) {
+        //Connection con = Conexao.conectar();
+        Connection con = Conexao.getInstance();
+        String sql = "select * from cliente where cpf=?";
+        List<Cliente> listaCliente = new ArrayList<>();
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, cpf);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("Nome"));
+                cliente.setCpf(rs.getString("CPF"));
+                cliente.setNumcartao(rs.getString("NumCartao"));
+                cliente.setEmail(rs.getString("Email"));
+                cliente.setTelefone(rs.getString("Telefone"));
+                listaCliente.add(cliente);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        return listaCliente;
+    }
+
+    public static List<Cliente> consultarNome(String nome) {
+        //Connection con = Conexao.conectar();
+        Connection con = Conexao.getInstance();
+        String sql = "select * from cliente where nome=?";
+        List<Cliente> listaCliente = new ArrayList<>();
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, nome);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("Nome"));
+                cliente.setCpf(rs.getString("CPF"));
+                cliente.setNumcartao(rs.getString("NumCartao"));
+                cliente.setEmail(rs.getString("Email"));
+                cliente.setTelefone(rs.getString("Telefone"));
+                listaCliente.add(cliente);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        return listaCliente;
+    }
+
     public int getId() {
         return id;
     }
@@ -218,38 +239,6 @@ public class Cliente {
 
     public void setNumcartao(String numcartao) {
         this.numcartao = numcartao;
-    }
-
-    public int getNumcheque() {
-        return numcheque;
-    }
-
-    public void setNumcheque(int numcheque) {
-        this.numcheque = numcheque;
-    }
-
-    public String getNomebanco() {
-        return nomebanco;
-    }
-
-    public void setNomebanco(String nomebanco) {
-        this.nomebanco = nomebanco;
-    }
-
-    public int getAgbanco() {
-        return agbanco;
-    }
-
-    public void setAgbanco(int agbanco) {
-        this.agbanco = agbanco;
-    }
-
-    public String getCtabanco() {
-        return ctabanco;
-    }
-
-    public void setCtabanco(String ctabanco) {
-        this.ctabanco = ctabanco;
     }
 
     public String getEmail() {

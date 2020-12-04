@@ -53,9 +53,9 @@ public class Locacao {
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setInt(1, carro.getId());
             stm.setInt(2, cliente.getId());
-            stm.setObject(3, DataHora.dataHora());
-            // manter dataRetirada para informar na efetivação da locação
+            stm.setObject(3, DataHora.data());
             stm.setObject(4, this.dataprevretirada);
+            //stm.setObject(5, DataHora.dataHora());// dataRetirada informar na efetivação da locação
             stm.setInt(5, this.prazolocacao);
             stm.setInt(6, this.kminicial);
             stm.execute();
@@ -107,7 +107,7 @@ public class Locacao {
         return true;
     }
 
-    public static Locacao consultar(String Placa) {
+    public static Locacao consultarPlaca(String Placa) {
         //Connection con = Conexao.conectar();
         Connection con = Conexao.getInstance();
         String sql = "select loc.* from locacao loc, carro car where "
@@ -140,6 +140,35 @@ public class Locacao {
         return locacao;
     }
 
+    public static Locacao consultar(int id) {
+        //Connection con = Conexao.conectar();
+        Connection con = Conexao.getInstance();
+        String sql = "select * from locacao where id = ?";
+        Locacao locacao = null;
+            try {
+                PreparedStatement stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                ResultSet rs = stm.executeQuery();
+                if (rs.next()) {
+                    locacao = new Locacao();
+                    locacao.setId(id);
+                    locacao.setCarro(Carro.consultar(rs.getInt("idcarro")));
+                    locacao.setCliente(Cliente.consultar(rs.getInt("idcliente")));
+                    locacao.setData(rs.getObject("data", LocalDate.class));
+                    locacao.setDataprevretirada(rs.getObject("Dataprevretirada", LocalDate.class));
+                    locacao.setDataretirada(rs.getObject("Dataretirada", LocalDateTime.class));
+                    locacao.setDataprevdevolucao(rs.getObject("Dataprevdevolucao", LocalDate.class));
+                    locacao.setDatadevolucao(rs.getObject("Datadevolucao", LocalDateTime.class));
+                    locacao.setPrazolocacao(rs.getInt("Prazolocacao"));
+                    locacao.setKminicial(rs.getInt("Kminicial"));
+                    locacao.setKmfinal(rs.getInt("Kmfinal"));
+                }
+            } catch (SQLException ex) {
+                System.out.println("Erro: " + ex.getMessage());
+            }
+        return locacao;
+    }
+
        public static List<Locacao> consultar() {
         //Connection con = Conexao.conectar();
         Connection con = Conexao.getInstance();
@@ -156,6 +185,40 @@ public class Locacao {
                     Carro car = Carro.consultar(rs.getInt("idcarro"));
                     locacao.setCarro(car);
                     locacao.setCliente(Cliente.consultar(rs.getInt("idcliente")));
+                    locacao.setData(rs.getObject("data", LocalDate.class));
+                    locacao.setDataprevretirada(rs.getObject("Dataprevretirada", LocalDate.class));
+                    locacao.setDataretirada(rs.getObject("Dataretirada", LocalDateTime.class));
+                    locacao.setDataprevdevolucao(rs.getObject("Dataprevdevolucao", LocalDate.class));
+                    locacao.setDatadevolucao(rs.getObject("Datadevolucao", LocalDateTime.class));
+                    locacao.setPrazolocacao(rs.getInt("Prazolocacao"));
+                    locacao.setKminicial(rs.getInt("Kminicial"));
+                    locacao.setKmfinal(rs.getInt("Kmfinal"));
+                    listaLocacao.add(locacao);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        return listaLocacao;
+    }
+
+       public List<Locacao> consultar(String cpfcliente) {
+        //Connection con = Conexao.conectar();
+        Connection con = Conexao.getInstance();
+        String sql = "select * from locacao loc, cliente cli where "
+                + "loc.idcliente = cli.id and cli.cpf = ?";
+
+        List<Locacao> listaLocacao = new ArrayList<>();
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, cliente.getCpf());
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                    Locacao locacao = new Locacao();
+                    locacao.setId(rs.getInt("id"));
+                    Cliente cliente = new Cliente();
+                    cliente = cliente.consultar(rs.getString("cpfcliente"));
+                    locacao.setCliente(cliente);
+                    locacao.setCarro(carro);
                     locacao.setData(rs.getObject("data", LocalDate.class));
                     locacao.setDataprevretirada(rs.getObject("Dataprevretirada", LocalDate.class));
                     locacao.setDataretirada(rs.getObject("Dataretirada", LocalDateTime.class));

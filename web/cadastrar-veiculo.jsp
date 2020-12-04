@@ -45,7 +45,7 @@
             <label>Câmbio Automático</label>
 
             <hr/>
-            <input type="submit" value="Salvar Dados"/>
+            <input type="submit" value="Salvar Cadastro de Veículo"/>
             <hr/>
             <input type="button" value="Retornar para Página Principal" onclick="location.href='index.html'"/>
 
