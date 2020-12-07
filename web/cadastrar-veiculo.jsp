@@ -43,7 +43,6 @@
             <br/>
             <input type="checkbox" name="cambioautom"/>
             <label>Câmbio Automático</label>
-
             <hr/>
             <input type="submit" value="Salvar Cadastro de Veículo"/>
             <hr/>
