@@ -169,12 +169,10 @@ public class Locacao {
         return locacao;
     }
 
-       public static List<Locacao> consultar() {
+    public static List<Locacao> consultar() {
         //Connection con = Conexao.conectar();
         Connection con = Conexao.getInstance();
-        String sql = "select * from locacao loc, carro car where "
-                + "loc.idcarro = car.id and car.placa = ?";
-
+        String sql = "select * from locacao";
         List<Locacao> listaLocacao = new ArrayList<>();
         try {
             PreparedStatement stm = con.prepareStatement(sql);
@@ -201,23 +199,24 @@ public class Locacao {
         return listaLocacao;
     }
 
-       public List<Locacao> consultar(String cpfcliente) {
+    public static List<Locacao> consultarNome(String nome) {
         //Connection con = Conexao.conectar();
         Connection con = Conexao.getInstance();
         String sql = "select * from locacao loc, cliente cli where "
-                + "loc.idcliente = cli.id and cli.cpf = ?";
-
+                + "loc.idcliente = cli.id and cli.nome like ?";
         List<Locacao> listaLocacao = new ArrayList<>();
         try {
             PreparedStatement stm = con.prepareStatement(sql);
-            stm.setString(1, cliente.getCpf());
+            stm.setString(1, nome + "%");
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                     Locacao locacao = new Locacao();
                     locacao.setId(rs.getInt("id"));
                     Cliente cliente = new Cliente();
-                    cliente = cliente.consultar(rs.getString("cpfcliente"));
+                    cliente = cliente.consultar(rs.getString("cpf"));
                     locacao.setCliente(cliente);
+                    Carro carro = new Carro();
+                    carro = carro.consultar(rs.getInt("idcarro"));
                     locacao.setCarro(carro);
                     locacao.setData(rs.getObject("data", LocalDate.class));
                     locacao.setDataprevretirada(rs.getObject("Dataprevretirada", LocalDate.class));

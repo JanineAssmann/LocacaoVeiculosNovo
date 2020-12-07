@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>LOCAÇÃO DE VEÍCULOS INDAIAL</title>
+        <title>LOCADORA DE VEÍCULOS INDAIAL</title>
         <link rel="shortcut icon" href="car3.ico" type="image/x-icon"> <!-- Inserção do ícone na barra de título do navegador -->
     </head>
     <body>
@@ -26,8 +26,7 @@
             List <Cliente> clientes = null;
             if (tipo == null || "".equals(tipo)) {
                 clientes = Cliente.consultar();
-            }
-            else {
+            } else {
                 txtPesquisa = request.getParameter("txtPesquisa").toUpperCase();
                 Cliente cliente = null;
                 switch(tipo) {
@@ -79,7 +78,6 @@
                     <td><%out.write(cli.getNumcartao());%></td>
                     <td><%out.write(cli.getEmail());%></td>
                     <td><%out.write(cli.getTelefone());%></td>
-                    
                     <td><%out.write("<a href=alterar-dados-cliente.jsp?idcliente="+String.valueOf(cli.getId())+">Alterar</a>");%></td>
                     <td><%out.write("<a href=excluir-cadastro-cliente.jsp?idcliente="+String.valueOf(cli.getId())+">Excluir</a>");%></td>
                 </tr> <!-- Indicação do início dos itens que formarão as linhas da tabela -->
@@ -88,6 +86,5 @@
         </table> <!-- Indicação do final da tabela -->
         <hr/>
         <button onclick="location.href='index.html'">Retornar para Página Principal</button><br/>
-        
     </body>
 </html>

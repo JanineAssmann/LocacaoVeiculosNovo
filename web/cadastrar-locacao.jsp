@@ -51,10 +51,7 @@
             <br/><br/>
             <label>Data Prevista para Retirada</label>
             <input type="date" name="dataprevretirada"/>
-<%--            <br/><br/>
-            <label>Data de Retirada</label>
-            <input type="date" name="dataretirada"/>
---%>            <br/><br/>
+            <br/><br/>
             <label>Km do Veículo na Retirada</label>
             <input type="text" name="kminicial"/>
             <br/><br/>

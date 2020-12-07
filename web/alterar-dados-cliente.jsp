@@ -10,10 +10,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>LOCAÇÃO DE VEÍCULOS INDAIAL</title>
+        <title>LOCADORA DE VEÍCULOS INDAIAL</title>
     </head>
     <body>
-        <h1>Locação de Veículos</h1>
+        <h1>Locadora de Veículos</h1>
         <h2>Consulta de Veículos Cadastrados</h2>
         <h3>Alteração de Dados de Veículos</h3>
         <hr/>
@@ -37,6 +37,7 @@
             <label>E-Mail</label>
             <input type="text" name="email" value="<%out.write(cli.getEmail());%>"/>
             <br/><br/>
+            <label>Telefone</label>
             <input type="text" name="telefone" value="<%out.write(cli.getTelefone());%>"/>
             <br/><br/>
             <label>Número do Cartão</label>
